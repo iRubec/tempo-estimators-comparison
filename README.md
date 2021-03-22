@@ -1,6 +1,6 @@
 # Tempo estimators comparison for EDM
 
-This repository handles the notebook *Tempo estimators comparison*, where a four different tempo estimators are analized for EDM music and a comparison between them is done. It has been developed in the scope of a project for the Music Information Retrieval course in the Master in Sound and Music Computing, Universitat Pompeu Fabra (2021).
+This repository handles the notebook *Tempo_estimators_comparison*, where a four different tempo estimators are analized for EDM music and a comparison between them is done. It has been developed in the scope of a project for the Music Information Retrieval course in the Master in Sound and Music Computing, Universitat Pompeu Fabra (2021).
 
 The *Beatport EDM key* dataset from the [mirdata library](https://mirdata.readthedocs.io/) is used, and the evaluation framework [tempo_eval](https://tempoeval.github.io/tempo_eval/).
 
