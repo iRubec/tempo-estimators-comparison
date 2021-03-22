@@ -13,3 +13,7 @@ To help in the reproduction of the notebook, some data is also provided in two d
   - JAMS files in the *annotations* folder. They are neccessary to create the evaluation document with the tempo_eval framework
 
 Please, refere to the notebook to learn the use of the provided data.
+
+## License
+
+This project is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
