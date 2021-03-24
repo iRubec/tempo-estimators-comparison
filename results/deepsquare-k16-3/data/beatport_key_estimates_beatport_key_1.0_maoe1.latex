@@ -1,0 +1,8 @@
+\begin{tabular}{lrrrr}
+\toprule
+{} &  AOE1\_MEAN &  AOE1\_STDEV &  AOE2\_MEAN &  AOE2\_STDEV \\
+Estimator        &            &             &            &             \\
+\midrule
+beatport\_key/1.0 &   0.090743 &    0.276515 &   0.010241 &     0.06239 \\
+\bottomrule
+\end{tabular}

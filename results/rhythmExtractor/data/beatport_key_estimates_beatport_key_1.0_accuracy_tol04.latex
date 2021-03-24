@@ -1,0 +1,8 @@
+\begin{tabular}{lrr}
+\toprule
+{} &  Accuracy1 &  Accuracy2 \\
+Estimator        &            &            \\
+\midrule
+beatport\_key/1.0 &   0.965116 &   0.978036 \\
+\bottomrule
+\end{tabular}

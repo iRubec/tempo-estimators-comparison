@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tempo estimation evaluation report by tempo_eval.">
+    <meta name="keywords" content="MIR music information retrieval tempo estimation evaluation">
+    <meta name="generator" content="tempo_eval 0.1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        code, pre {
+            font-family: monospace;
+        }
+        h1, h2, h3 {
+            margin-top: 1.5em;
+        }
+        h4, h5, h6 {
+            margin-top: 1em;
+        }
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+        }
+        div.container {
+            width: 75%;
+            margin: 0 auto;
+        }
+        figure {
+            text-align: center;
+        }
+        embed {
+            max-width: 800px;
+        }
+        tr:nth-child(even) {
+            background: #FFF;
+        }
+        thead {
+            border-top: 2px solid #BBB;
+            border-bottom: 1px solid #BBB;
+        }
+        tbody {
+            border-bottom: 2px solid #BBB;
+        }
+        td, th {
+            padding:0 15px 0 15px;
+        }
+        </style>
+</head>
+<body>
+<div class="container">
+<h1 id="beatport_key">beatport_key</h1>
+<p>This is the <a href="https://tempoeval.github.io/tempo_eval/">tempo_eval</a> report for the &lsquo;beatport_key&rsquo; corpus.</p>
+<p>Reports for other corpora may be found <a href="index.html">here</a>.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<div class="toc">
+<ul>
+<li><a href="#beatport_key">beatport_key</a><ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+</ul>
+</li>
+<li><a href="#references-for-beatport_key">References for &lsquo;beatport_key&rsquo;</a><ul>
+<li><a href="#references">References</a><ul>
+<li><a href="#beatport_key10">beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#basic-statistics">Basic Statistics</a></li>
+<li><a href="#smoothed-tempo-distribution">Smoothed Tempo Distribution</a></li>
+</ul>
+</li>
+<li><a href="#estimates-for-beatport_key">Estimates for &lsquo;beatport_key&rsquo;</a><ul>
+<li><a href="#estimators">Estimators</a><ul>
+<li><a href="#beatport_key10_1">beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#basic-statistics_1">Basic Statistics</a></li>
+<li><a href="#smoothed-tempo-distribution_1">Smoothed Tempo Distribution</a></li>
+<li><a href="#accuracy">Accuracy</a><ul>
+<li><a href="#accuracy-results-for-beatport_key10">Accuracy Results for beatport_key/1.0</a></li>
+<li><a href="#accuracy1-for-beatport_key10">Accuracy1 for beatport_key/1.0</a></li>
+<li><a href="#accuracy2-for-beatport_key10">Accuracy2 for beatport_key/1.0</a></li>
+<li><a href="#differing-items">Differing Items</a><ul>
+<li><a href="#differing-items-accuracy1">Differing Items Accuracy1</a></li>
+<li><a href="#differing-items-accuracy2">Differing Items Accuracy2</a></li>
+</ul>
+</li>
+<li><a href="#accuracy1-on-tempo-subsets">Accuracy1 on Tempo-Subsets</a><ul>
+<li><a href="#accuracy1-on-tempo-subsets-for-beatport_key10">Accuracy1 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#accuracy2-on-tempo-subsets">Accuracy2 on Tempo-Subsets</a><ul>
+<li><a href="#accuracy2-on-tempo-subsets-for-beatport_key10">Accuracy2 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-accuracy1-for-tempo">Estimated Accuracy1 for Tempo</a><ul>
+<li><a href="#estimated-accuracy1-for-tempo-for-beatport_key10">Estimated Accuracy1 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-accuracy2-for-tempo">Estimated Accuracy2 for Tempo</a><ul>
+<li><a href="#estimated-accuracy2-for-tempo-for-beatport_key10">Estimated Accuracy2 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#oe1-and-oe2">OE1 and OE2</a><ul>
+<li><a href="#mean-oe1oe2-results-for-beatport_key10">Mean OE1/OE2 Results for beatport_key/1.0</a></li>
+<li><a href="#oe1-distribution-for-beatport_key10">OE1 distribution for beatport_key/1.0</a></li>
+<li><a href="#oe2-distribution-for-beatport_key10">OE2 distribution for beatport_key/1.0</a></li>
+<li><a href="#oe1-on-tempo-subsets">OE1 on Tempo-Subsets</a><ul>
+<li><a href="#oe1-on-tempo-subsets-for-beatport_key10">OE1 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#oe2-on-tempo-subsets">OE2 on Tempo-Subsets</a><ul>
+<li><a href="#oe2-on-tempo-subsets-for-beatport_key10">OE2 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-oe1-for-tempo">Estimated OE1 for Tempo</a><ul>
+<li><a href="#estimated-oe1-for-tempo-for-beatport_key10">Estimated OE1 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-oe2-for-tempo">Estimated OE2 for Tempo</a><ul>
+<li><a href="#estimated-oe2-for-tempo-for-beatport_key10">Estimated OE2 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#aoe1-and-aoe2">AOE1 and AOE2</a><ul>
+<li><a href="#mean-aoe1aoe2-results-for-beatport_key10">Mean AOE1/AOE2 Results for beatport_key/1.0</a></li>
+<li><a href="#aoe1-distribution-for-beatport_key10">AOE1 distribution for beatport_key/1.0</a></li>
+<li><a href="#aoe2-distribution-for-beatport_key10">AOE2 distribution for beatport_key/1.0</a></li>
+<li><a href="#aoe1-on-tempo-subsets">AOE1 on Tempo-Subsets</a><ul>
+<li><a href="#aoe1-on-tempo-subsets-for-beatport_key10">AOE1 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#aoe2-on-tempo-subsets">AOE2 on Tempo-Subsets</a><ul>
+<li><a href="#aoe2-on-tempo-subsets-for-beatport_key10">AOE2 on Tempo-Subsets for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-aoe1-for-tempo">Estimated AOE1 for Tempo</a><ul>
+<li><a href="#estimated-aoe1-for-tempo-for-beatport_key10">Estimated AOE1 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+<li><a href="#estimated-aoe2-for-tempo">Estimated AOE2 for Tempo</a><ul>
+<li><a href="#estimated-aoe2-for-tempo-for-beatport_key10">Estimated AOE2 for Tempo for beatport_key/1.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="references-for-beatport_key">References for &lsquo;beatport_key&rsquo;</h1>
+<h2 id="references">References</h2>
+<h3 id="beatport_key10">beatport_key/1.0</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Corpus</strong></td>
+<td>beatport_key</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><strong>Curator</strong></td>
+<td><a href="mailto:ruben.eguinoa01@estudiant.upf.edu">Ruben</a></td>
+</tr>
+<tr>
+<td><strong>Data&nbsp;Source</strong></td>
+<td>mirdata</td>
+</tr>
+</tbody>
+</table>
+<h2 id="basic-statistics">Basic Statistics</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Reference</th>
+<th align="center">Size</th>
+<th align="center">Min</th>
+<th align="center">Max</th>
+<th align="center">Avg</th>
+<th align="center">Stdev</th>
+<th align="center">Sweet Oct. Start</th>
+<th align="center">Sweet Oct. Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="#beatport_key10">beatport_key/1.0</a></td>
+<td align="center">774</td>
+<td align="center">66.00</td>
+<td align="center">195.00</td>
+<td align="center">126.36</td>
+<td align="center">17.23</td>
+<td align="center">83.00</td>
+<td align="center">0.97</td>
+</tr>
+</tbody>
+</table>
+<p><a name="table1"></a>Table 1: Basic statistics.</p>
+<p><a href="data/beatport_key_reference_basic_stats.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_reference_basic_stats.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_reference_basic_stats.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_reference_basic_stats.pickle" title="Download data as PICKLE">PICKLE</a> </p>
+<h2 id="smoothed-tempo-distribution">Smoothed Tempo Distribution</h2>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_reference_dist.svg">
+</figure>
+
+<p><a name="figure1"></a>Figure 1: Percentage of values in tempo interval.</p>
+<p><a href="data/beatport_key_reference_dist.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_reference_dist.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_reference_dist.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_reference_dist.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_reference_dist.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_reference_dist.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_reference_dist.png" title="Open Figure">PNG</a> </p>
+<h1 id="estimates-for-beatport_key">Estimates for &lsquo;beatport_key&rsquo;</h1>
+<h2 id="estimators">Estimators</h2>
+<h3 id="beatport_key10_1">beatport_key/1.0</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Corpus</strong></td>
+<td>beatport_key</td>
+</tr>
+<tr>
+<td><strong>Version</strong></td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><strong>Curator</strong></td>
+<td><a href="mailto:ruben.eguinoa01@estudiant.upf.edu">Ruben</a></td>
+</tr>
+<tr>
+<td><strong>Data&nbsp;Source</strong></td>
+<td>deeptemp-k16-3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="basic-statistics_1">Basic Statistics</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Estimator</th>
+<th align="center">Size</th>
+<th align="center">Min</th>
+<th align="center">Max</th>
+<th align="center">Avg</th>
+<th align="center">Stdev</th>
+<th align="center">Sweet Oct. Start</th>
+<th align="center">Sweet Oct. Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="#beatport_key10">beatport_key/1.0</a></td>
+<td align="center">774</td>
+<td align="center">30.00</td>
+<td align="center">179.00</td>
+<td align="center">127.87</td>
+<td align="center">19.41</td>
+<td align="center">89.00</td>
+<td align="center">0.95</td>
+</tr>
+</tbody>
+</table>
+<p><a name="table2"></a>Table 2: Basic statistics.</p>
+<p><a href="data/beatport_key_estimates_basic_stats.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_basic_stats.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_basic_stats.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_basic_stats.pickle" title="Download data as PICKLE">PICKLE</a> </p>
+<h2 id="smoothed-tempo-distribution_1">Smoothed Tempo Distribution</h2>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_dist.svg">
+</figure>
+
+<p><a name="figure2"></a>Figure 2: Percentage of values in tempo interval.</p>
+<p><a href="data/beatport_key_estimates_dist.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_dist.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_dist.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_dist.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_dist.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_dist.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_dist.png" title="Open Figure">PNG</a> </p>
+<h2 id="accuracy">Accuracy</h2>
+<p>Accuracy<sub>1</sub> is defined as the percentage of correct estimates, allowing a 4% tolerance for individual BPM values.</p>
+<p>Accuracy<sub>2</sub> additionally permits estimates to be wrong by a factor of 2, 3, 1/2 or 1/3 (so-called <em>octave errors</em>).</p>
+<p>See [<a href="bib/Gouyon2006.bib">Gouyon2006</a>].</p>
+<p><em>Note: When comparing accuracy values for different algorithms, keep in mind that an algorithm may have been trained on the test set or that the test set may have even been created using one of the tested algorithms.</em></p>
+<h3 id="accuracy-results-for-beatport_key10">Accuracy Results for beatport_key/1.0</h3>
+<table>
+<thead>
+<tr>
+<th align="right">Estimator</th>
+<th align="center">Accuracy1</th>
+<th align="center">Accuracy2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="#beatport_key10">beatport_key/1.0</a></td>
+<td align="center"><strong>0.9083</strong></td>
+<td align="center"><strong>0.9742</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a name="table3"></a>Table 3: Mean accuracy of estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> with 4% tolerance ordered by Accuracy<sub>1</sub>.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_accuracy_tol04.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy_tol04.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy_tol04.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy_tol04.pickle" title="Download data as PICKLE">PICKLE</a> </p>
+<p>Raw data Accuracy<sub>1</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy1_tol04.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy1_tol04.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy1_tol04.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy1_tol04.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<p>Raw data Accuracy<sub>2</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy2_tol04.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy2_tol04.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy2_tol04.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_accuracy2_tol04.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<h3 id="accuracy1-for-beatport_key10">Accuracy<sub>1</sub> for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_accuracy1.svg">
+</figure>
+
+<p><a name="figure3"></a>Figure 3: Mean Accuracy<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> depending on tolerance.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_accuracy1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy1.png" title="Open Figure">PNG</a> </p>
+<h3 id="accuracy2-for-beatport_key10">Accuracy<sub>2</sub> for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_accuracy2.svg">
+</figure>
+
+<p><a name="figure4"></a>Figure 4: Mean Accuracy<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> depending on tolerance.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_accuracy2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_accuracy2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_accuracy2.png" title="Open Figure">PNG</a> </p>
+<h3 id="differing-items">Differing Items</h3>
+<p>For which items did a given estimator not estimate a correct value with respect to a given ground truth? Are there items which are either very difficult, not suitable for the task, or incorrectly annotated and therefore never estimated correctly, regardless which estimator is used?</p>
+<h4 id="differing-items-accuracy1">Differing Items Accuracy<sub>1</sub></h4>
+<p>Items with different tempo annotations (Accuracy<sub>1</sub>, 4% tolerance) in different versions:</p>
+<p><em><a href="#beatport_key10">beatport_key/1.0</a> compared with <a href="#beatport_key10">beatport_key/1.0</a> (71 differences):</em>
+&lsquo;1034722 Scorpio - Ali Ba-Ba (Original Mix)&rsquo; &lsquo;103857 Hatstandy Andy - Emerge And See (Dysfunktional Mix)&rsquo; &lsquo;1059355 Barbara Lahr - Pretty Bird (Original Mix)&rsquo; &lsquo;1127447 Code 3 - Living Proof (Original Mix)&rsquo; &lsquo;1205438 Contract Killers - Therapy (Original Mix)&rsquo; &lsquo;1372384 Oso, Kid Of Darkroom Familia - Living Dead (Original Mix)&rsquo; &lsquo;1393305 Zoom - Five To Eleven (Original Mix)&rsquo; &lsquo;1569491 Flunk - See Through You (Original Mix)&rsquo; &lsquo;1868905 Tayce - Ghost House (Original Mix)&rsquo; &lsquo;1883395 Mind Killa - Open Aggression (Original Mix)&rsquo; &lsquo;203541 Drumsound &amp; Bassline Smith - Dub Track (Original Mix)&rsquo; &hellip;
+<a href="data/beatport_key_estimates_beatport_key_1.0_beatport_key_1.0_diff_items_tol04_accuracy1.csv" title="Download list as CSV">CSV</a></p>
+<p><strong>None of the estimators estimated the following 71 items &lsquo;correctly&rsquo; using Accuracy<sub>1</sub>:</strong>
+&lsquo;1034722 Scorpio - Ali Ba-Ba (Original Mix)&rsquo; &lsquo;103857 Hatstandy Andy - Emerge And See (Dysfunktional Mix)&rsquo; &lsquo;1059355 Barbara Lahr - Pretty Bird (Original Mix)&rsquo; &lsquo;1127447 Code 3 - Living Proof (Original Mix)&rsquo; &lsquo;1205438 Contract Killers - Therapy (Original Mix)&rsquo; &lsquo;1372384 Oso, Kid Of Darkroom Familia - Living Dead (Original Mix)&rsquo; &lsquo;1393305 Zoom - Five To Eleven (Original Mix)&rsquo; &lsquo;1569491 Flunk - See Through You (Original Mix)&rsquo; &lsquo;1868905 Tayce - Ghost House (Original Mix)&rsquo; &lsquo;1883395 Mind Killa - Open Aggression (Original Mix)&rsquo; &lsquo;203541 Drumsound &amp; Bassline Smith - Dub Track (Original Mix)&rsquo; &hellip;
+<a href="data/beatport_key_estimates_all_diff_items_tol04_accuracy1.csv" title="Download list as CSV">CSV</a></p>
+<h4 id="differing-items-accuracy2">Differing Items Accuracy<sub>2</sub></h4>
+<p>Items with different tempo annotations (Accuracy<sub>2</sub>, 4% tolerance) in different versions:</p>
+<p><em><a href="#beatport_key10">beatport_key/1.0</a> compared with <a href="#beatport_key10">beatport_key/1.0</a> (20 differences):</em>
+&lsquo;103857 Hatstandy Andy - Emerge And See (Dysfunktional Mix)&rsquo; &lsquo;1868905 Tayce - Ghost House (Original Mix)&rsquo; &lsquo;1883395 Mind Killa - Open Aggression (Original Mix)&rsquo; &lsquo;2047805 The Noble Six - Forbidden Kingdom (TwoThirds Remix)&rsquo; &lsquo;297030 Percy X - Vox Digital (Original Mix)&rsquo; &lsquo;299464 Quarks - Dunkeln (Jamie Hodge Mix)&rsquo; &lsquo;299491 Barbara Morgenstern - Eine Verabredung (Original Mix)&rsquo; &lsquo;299509 Barbara Morgenstern - Eine Verabredung (Original Mix)&rsquo; &lsquo;299801 Agnes (ch) - Anger Therapy (Original Mix)&rsquo; &lsquo;3116337 Speh - Reaching You (Original Mix)&rsquo; &lsquo;3154894 nCamargo - Closer To Yo (Original Mix)&rsquo; &hellip;
+<a href="data/beatport_key_estimates_beatport_key_1.0_beatport_key_1.0_diff_items_tol04_accuracy2.csv" title="Download list as CSV">CSV</a></p>
+<p><strong>None of the estimators estimated the following 20 items &lsquo;correctly&rsquo; using Accuracy<sub>2</sub>:</strong>
+&lsquo;103857 Hatstandy Andy - Emerge And See (Dysfunktional Mix)&rsquo; &lsquo;1868905 Tayce - Ghost House (Original Mix)&rsquo; &lsquo;1883395 Mind Killa - Open Aggression (Original Mix)&rsquo; &lsquo;2047805 The Noble Six - Forbidden Kingdom (TwoThirds Remix)&rsquo; &lsquo;297030 Percy X - Vox Digital (Original Mix)&rsquo; &lsquo;299464 Quarks - Dunkeln (Jamie Hodge Mix)&rsquo; &lsquo;299491 Barbara Morgenstern - Eine Verabredung (Original Mix)&rsquo; &lsquo;299509 Barbara Morgenstern - Eine Verabredung (Original Mix)&rsquo; &lsquo;299801 Agnes (ch) - Anger Therapy (Original Mix)&rsquo; &lsquo;3116337 Speh - Reaching You (Original Mix)&rsquo; &lsquo;3154894 nCamargo - Closer To Yo (Original Mix)&rsquo; &hellip;
+<a href="data/beatport_key_estimates_all_diff_items_tol04_accuracy2.csv" title="Download list as CSV">CSV</a></p>
+<h3 id="accuracy1-on-tempo-subsets">Accuracy<sub>1</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean Accuracy<sub>1</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="accuracy1-on-tempo-subsets-for-beatport_key10">Accuracy<sub>1</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.svg">
+</figure>
+
+<p><a name="figure5"></a>Figure 5: Mean Accuracy<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy1.png" title="Open Figure">PNG</a> </p>
+<h3 id="accuracy2-on-tempo-subsets">Accuracy<sub>2</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean Accuracy<sub>2</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="accuracy2-on-tempo-subsets-for-beatport_key10">Accuracy<sub>2</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.svg">
+</figure>
+
+<p><a name="figure6"></a>Figure 6: Mean Accuracy<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_accuracy2.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-accuracy1-for-tempo">Estimated Accuracy<sub>1</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to Accuracy<sub>1</sub>-values and a ground truth, what Accuracy<sub>1</sub> can we expect with confidence?</p>
+<h4 id="estimated-accuracy1-for-tempo-for-beatport_key10">Estimated Accuracy<sub>1</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on Accuracy<sub>1</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.svg">
+</figure>
+
+<p><a name="figure7"></a>Figure 7: Accuracy<sub>1</sub> predictions of a generalized additive model (GAM) fit to Accuracy<sub>1</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy1.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-accuracy2-for-tempo">Estimated Accuracy<sub>2</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to Accuracy<sub>2</sub>-values and a ground truth, what Accuracy<sub>2</sub> can we expect with confidence?</p>
+<h4 id="estimated-accuracy2-for-tempo-for-beatport_key10">Estimated Accuracy<sub>2</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on Accuracy<sub>2</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.svg">
+</figure>
+
+<p><a name="figure8"></a>Figure 8: Accuracy<sub>2</sub> predictions of a generalized additive model (GAM) fit to Accuracy<sub>2</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_accuracy2.png" title="Open Figure">PNG</a> </p>
+<h2 id="oe1-and-oe2">OE<sub>1</sub> and OE<sub>2</sub></h2>
+<p>OE<sub>1</sub> is defined as octave error between an estimate <code>E</code> and a reference value <code>R</code>.This means that the most common errors&mdash;by a factor of 2 or &frac12;&mdash;have the same magnitude, namely 1: <code>OE<sub>2</sub>(E) = log<sub>2</sub>(E/R)</code>.</p>
+<p>OE<sub>2</sub> is the signed OE<sub>1</sub> corresponding to the minimum absolute OE<sub>1</sub> allowing the octaveerrors 2, 3, 1/2, and 1/3: <code>OE<sub>2</sub>(E) = arg min<sub>x</sub>(|x|) with x ∈ {OE<sub>1</sub>(E), OE<sub>1</sub>(2E), OE<sub>1</sub>(3E), OE<sub>1</sub>(&frac12;E), OE<sub>1</sub>(&frac13;E)}</code></p>
+<h3 id="mean-oe1oe2-results-for-beatport_key10">Mean OE<sub>1</sub>/OE<sub>2</sub> Results for beatport_key/1.0</h3>
+<table>
+<thead>
+<tr>
+<th align="right">Estimator</th>
+<th align="center">OE1_MEAN</th>
+<th align="center">OE1_STDEV</th>
+<th align="center">OE2_MEAN</th>
+<th align="center">OE2_STDEV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="#beatport_key10">beatport_key/1.0</a></td>
+<td align="center"><strong>0.0128</strong></td>
+<td align="center"><strong>0.2810</strong></td>
+<td align="center"><strong>-0.0084</strong></td>
+<td align="center"><strong>0.0643</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a name="table4"></a>Table 4: Mean OE1/OE2 for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> ordered by standard deviation.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_moe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_moe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_moe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_moe1.pickle" title="Download data as PICKLE">PICKLE</a> </p>
+<p>Raw data OE<sub>1</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe1.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe1.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe1.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe1.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<p>Raw data OE<sub>2</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe2.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe2.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe2.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_oe2.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<h3 id="oe1-distribution-for-beatport_key10">OE<sub>1</sub> distribution for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe1.svg">
+</figure>
+
+<p><a name="figure9"></a>Figure 9: OE<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a>. Shown are the mean OE<sub>1</sub> and an empirical distribution of the sample, using kernel density estimation (KDE).</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="oe2-distribution-for-beatport_key10">OE<sub>2</sub> distribution for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe2.svg">
+</figure>
+
+<p><a name="figure10"></a>Figure 10: OE<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a>. Shown are the mean OE<sub>2</sub> and an empirical distribution of the sample, using kernel density estimation (KDE).</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_oe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_oe2.png" title="Open Figure">PNG</a> </p>
+<h3 id="oe1-on-tempo-subsets">OE<sub>1</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean OE<sub>1</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="oe1-on-tempo-subsets-for-beatport_key10">OE<sub>1</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_oe1.svg">
+</figure>
+
+<p><a name="figure11"></a>Figure 11: Mean OE<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="oe2-on-tempo-subsets">OE<sub>2</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean OE<sub>2</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="oe2-on-tempo-subsets-for-beatport_key10">OE<sub>2</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_oe2.svg">
+</figure>
+
+<p><a name="figure12"></a>Figure 12: Mean OE<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_oe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_oe2.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-oe1-for-tempo">Estimated OE<sub>1</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to OE<sub>1</sub>-values and a ground truth, what OE<sub>1</sub> can we expect with confidence?</p>
+<h4 id="estimated-oe1-for-tempo-for-beatport_key10">Estimated OE<sub>1</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on OE<sub>1</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.svg">
+</figure>
+
+<p><a name="figure13"></a>Figure 13: OE<sub>1</sub> predictions of a generalized additive model (GAM) fit to OE<sub>1</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-oe2-for-tempo">Estimated OE<sub>2</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to OE<sub>2</sub>-values and a ground truth, what OE<sub>2</sub> can we expect with confidence?</p>
+<h4 id="estimated-oe2-for-tempo-for-beatport_key10">Estimated OE<sub>2</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on OE<sub>2</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.svg">
+</figure>
+
+<p><a name="figure14"></a>Figure 14: OE<sub>2</sub> predictions of a generalized additive model (GAM) fit to OE<sub>2</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_oe2.png" title="Open Figure">PNG</a> </p>
+<h2 id="aoe1-and-aoe2">AOE<sub>1</sub> and AOE<sub>2</sub></h2>
+<p>AOE<sub>1</sub> is defined as absolute octave error between an estimate and a reference value: <code>AOE<sub>1</sub>(E) = |log<sub>2</sub>(E/R)|</code>.</p>
+<p>AOE<sub>2</sub> is the minimum of AOE<sub>1</sub> allowing the octave errors 2, 3, 1/2, and 1/3: <code>AOE<sub>2</sub>(E) = min(AOE<sub>1</sub>(E), AOE<sub>1</sub>(2E), AOE<sub>1</sub>(3E), AOE<sub>1</sub>(&frac12;E), AOE<sub>1</sub>(&frac13;E))</code>.</p>
+<h3 id="mean-aoe1aoe2-results-for-beatport_key10">Mean AOE<sub>1</sub>/AOE<sub>2</sub> Results for beatport_key/1.0</h3>
+<table>
+<thead>
+<tr>
+<th align="right">Estimator</th>
+<th align="center">AOE1_MEAN</th>
+<th align="center">AOE1_STDEV</th>
+<th align="center">AOE2_MEAN</th>
+<th align="center">AOE2_STDEV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"><a href="#beatport_key10">beatport_key/1.0</a></td>
+<td align="center"><strong>0.0825</strong></td>
+<td align="center"><strong>0.2690</strong></td>
+<td align="center"><strong>0.0110</strong></td>
+<td align="center"><strong>0.0639</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a name="table5"></a>Table 5: Mean AOE1/AOE2 for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> ordered by mean.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_maoe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_maoe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_maoe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_maoe1.pickle" title="Download data as PICKLE">PICKLE</a> </p>
+<p>Raw data AOE<sub>1</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe1.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe1.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe1.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe1.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<p>Raw data AOE<sub>2</sub>: <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe2.csv" title="Download raw data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe2.json" title="Download raw data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe2.latex" title="Download raw data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_raw_aoe2.pickle" title="Download raw data as PICKLE">PICKLE</a> </p>
+<h3 id="aoe1-distribution-for-beatport_key10">AOE<sub>1</sub> distribution for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.svg">
+</figure>
+
+<p><a name="figure15"></a>Figure 15: AOE<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a>. Shown are the mean AOE<sub>1</sub> and an empirical distribution of the sample, using kernel density estimation (KDE).</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="aoe2-distribution-for-beatport_key10">AOE<sub>2</sub> distribution for beatport_key/1.0</h3>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.svg">
+</figure>
+
+<p><a name="figure16"></a>Figure 16: AOE<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a>. Shown are the mean AOE<sub>2</sub> and an empirical distribution of the sample, using kernel density estimation (KDE).</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_distribution_aoe2.png" title="Open Figure">PNG</a> </p>
+<h3 id="aoe1-on-tempo-subsets">AOE<sub>1</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean AOE<sub>1</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="aoe1-on-tempo-subsets-for-beatport_key10">AOE<sub>1</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe1.svg">
+</figure>
+
+<p><a name="figure17"></a>Figure 17: Mean AOE<sub>1</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="aoe2-on-tempo-subsets">AOE<sub>2</sub> on Tempo-Subsets</h3>
+<p>How well does an estimator perform, when only taking a subset of the reference annotations into account? The graphs show mean AOE<sub>2</sub> for reference subsets with tempi in [T-10,T+10] BPM. Note that the graphs do not show confidence intervals and that some values may be based on very few estimates.</p>
+<h4 id="aoe2-on-tempo-subsets-for-beatport_key10">AOE<sub>2</sub> on Tempo-Subsets for beatport_key/1.0</h4>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe2.svg">
+</figure>
+
+<p><a name="figure18"></a>Figure 18: Mean AOE<sub>2</sub> for estimates compared to version <a href="#beatport_key10">beatport_key/1.0</a> for tempo intervals around T.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_inter_aoe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_inter_aoe2.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-aoe1-for-tempo">Estimated AOE<sub>1</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to AOE<sub>1</sub>-values and a ground truth, what AOE<sub>1</sub> can we expect with confidence?</p>
+<h4 id="estimated-aoe1-for-tempo-for-beatport_key10">Estimated AOE<sub>1</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on AOE<sub>1</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.svg">
+</figure>
+
+<p><a name="figure19"></a>Figure 19: AOE<sub>1</sub> predictions of a generalized additive model (GAM) fit to AOE<sub>1</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe1.png" title="Open Figure">PNG</a> </p>
+<h3 id="estimated-aoe2-for-tempo">Estimated AOE<sub>2</sub> for Tempo</h3>
+<p>When fitting a generalized additive model (GAM) to AOE<sub>2</sub>-values and a ground truth, what AOE<sub>2</sub> can we expect with confidence?</p>
+<h4 id="estimated-aoe2-for-tempo-for-beatport_key10">Estimated AOE<sub>2</sub> for Tempo for beatport_key/1.0</h4>
+<p>Predictions of GAMs trained on AOE<sub>2</sub> for estimates for reference <a href="#beatport_key10">beatport_key/1.0</a>.</p>
+<figure>
+<embed type="image/svg+xml" src="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.svg">
+</figure>
+
+<p><a name="figure20"></a>Figure 20: AOE<sub>2</sub> predictions of a generalized additive model (GAM) fit to AOE<sub>2</sub> results for <a href="#beatport_key10">beatport_key/1.0</a>. The 95% confidence interval around the prediction is shaded in gray.</p>
+<p><a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.csv" title="Download data as CSV">CSV</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.json" title="Download data as JSON">JSON</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.latex" title="Download data as LATEX">LATEX</a> <a href="data/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.pickle" title="Download data as PICKLE">PICKLE</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.svg" title="Open Figure">SVG</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.pdf" title="Open Figure">PDF</a> <a href="figures/beatport_key_estimates_beatport_key_1.0_tempo_gam_aoe2.png" title="Open Figure">PNG</a> </p>
+<hr>
+<p>Generated by <a href="https://tempoeval.github.io/tempo_eval/">tempo_eval</a> 0.1.0 on 2021-03-08 15:54. Size L.</p>
+</div>
+</body>
+</html>

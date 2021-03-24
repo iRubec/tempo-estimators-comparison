@@ -1,0 +1,8 @@
+\begin{tabular}{lrrrrrrr}
+\toprule
+{} &  Size &   Min &    Max &         Avg &      Stdev &  Sweet Oct. Start &  Sweet Oct. Coverage \\
+Estimator        &       &       &        &             &            &                   &                      \\
+\midrule
+beatport\_key/1.0 &   774 &  30.0 &  179.0 &  127.866925 &  19.414965 &              89.0 &             0.953488 \\
+\bottomrule
+\end{tabular}
